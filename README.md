@@ -1,16 +1,41 @@
-# Handlebars.Net.Extension
+Handlebars.Extension.Json [![Nuget](https://img.shields.io/nuget/vpre/Handlebars.Net.Extension.Json)](https://www.nuget.org/packages/Handlebars.Net.Extension.Json/)
+--
 
-Template repository for Handlebars.Net extensions
+## Purpose
 
-#### How to use:
-- Create new repo using template
-- Find all `<!-- Replace with correct value -->` and replace with valid values
-- Make additional changes that are required by the extensions
+Adds [`System.Text.Json.JsonDocument`](https://docs.microsoft.com/en-us/dotnet/api/system.text.json.jsondocument) support to [Handlebars.Net](https://github.com/Handlebars-Net/Handlebars.Net).
 
-Notes:
-- The template is designed to be used as part of Handlebars-Net organization.
-Usage outside of the organization may require additional changes
+### Install
+```cmd
+dotnet add package Handlebars.Net.Extension.Json
+```
 
-#### If you want your extension to be moved under Handlebars-Net organization:
-- Add [@zjklee](https://github.com/zjklee) as admin for the repo
-- Contact [@zjklee](https://github.com/zjklee)
+### Usage
+```c#
+var handlebars = Handlebars.Create();
+handlebars.Configuration.UseJson();
+```
+
+### Example
+```c#
+[Fact]
+public void JsonTestObjects()
+{
+    var model = JsonDocument.Parse("{\"Key1\": \"Val1\", \"Key2\": \"Val2\"}");
+
+    var source = "{{#each this}}{{@key}}{{@value}}{{/each}}";
+
+    var handlebars = Handlebars.Create();
+    handlebars.Configuration.UseJson();
+
+    var template = handlebars.Compile(source);
+
+    var output = template(model);
+
+    Assert.Equal("Key1Val1Key2Val2", output);
+}
+```
+
+### History
+- Inspired by [rexm/Handlebars.Net/issues/304](https://github.com/rexm/Handlebars.Net/issues/304)
+
