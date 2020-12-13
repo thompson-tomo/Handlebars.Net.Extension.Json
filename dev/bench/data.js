@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1607882947482,
+  "lastUpdate": 1607897851975,
   "repoUrl": "https://github.com/Handlebars-Net/Handlebars.Net.Extension.Json",
   "entries": {
     "Benchmark.Net.Extension Benchmark": [
@@ -96,6 +96,54 @@ window.BENCHMARK_DATA = {
             "value": 315997.07346754806,
             "unit": "ns",
             "range": "± 397.6919028629119"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "zjklee@gmail.com",
+            "name": "Oleh Formaniuk",
+            "username": "zjklee"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2228d908091e658edb00f873be7f7adf3cd83722",
+          "message": "Merge pull request #2 from Handlebars-Net/feature/release\n\nRelease version",
+          "timestamp": "2020-12-13T14:14:46-08:00",
+          "tree_id": "a06729f6f9b279e4b29138df70dabc41b5ece708",
+          "url": "https://github.com/Handlebars-Net/Handlebars.Net.Extension.Json/commit/2228d908091e658edb00f873be7f7adf3cd83722"
+        },
+        "date": 1607897851381,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "HandlebarsNet.Extension.Benchmark.Json.SystemTextJson(N: 2)",
+            "value": 27398.468030657088,
+            "unit": "ns",
+            "range": "± 33.76358289900905"
+          },
+          {
+            "name": "HandlebarsNet.Extension.Benchmark.Json.SystemTextJson(N: 5)",
+            "value": 205857.0467703683,
+            "unit": "ns",
+            "range": "± 167.50169002788735"
+          },
+          {
+            "name": "HandlebarsNet.Extension.Benchmark.Json.SystemTextJson(N: 10)",
+            "value": 1288883.2088216145,
+            "unit": "ns",
+            "range": "± 1568.3168906796475"
+          },
+          {
+            "name": "HandlebarsNet.Extension.Benchmark.EndToEnd.Default(N: 5, DataType: \"json\")",
+            "value": 348405.12472098216,
+            "unit": "ns",
+            "range": "± 293.34031143488977"
           }
         ]
       }
