@@ -1,12 +1,12 @@
 using System;
 using System.Text.Json;
-using HandlebarsDotNet.Compiler.Structure.Path;
+using HandlebarsDotNet.PathStructure;
 
 namespace HandlebarsDotNet.Extension.Json
 {
-    public class CountMemberAliasProvider : IMemberAliasProvider
+    public class CountMemberAliasProvider : IMemberAliasProvider<JsonElement>
     {
-        public bool TryGetMemberByAlias(object instance, Type targetType, ChainSegment memberAlias, out object? value)
+        public bool TryGetMemberByAlias(JsonElement instance, Type targetType, ChainSegment memberAlias, out object? value)
         {
             if (!EqualsIgnoreCase("count", memberAlias) && !EqualsIgnoreCase("length", memberAlias))
             {
@@ -14,13 +14,13 @@ namespace HandlebarsDotNet.Extension.Json
                 return false;
             }
             
-            if (!(instance is JsonElement element && element.ValueKind == JsonValueKind.Array))
+            if (instance.ValueKind != JsonValueKind.Array)
             {
                 value = null;
                 return false;
             }
 
-            value = element.GetArrayLength();
+            value = instance.GetArrayLength();
             return true;
 
             static bool EqualsIgnoreCase(string a, ChainSegment b)

@@ -7,6 +7,9 @@ namespace HandlebarsDotNet.Extension.Json
     /// </summary>
     public static class JsonFeatureExtensions
     {
+        private static readonly JsonDocumentObjectDescriptor JsonDocumentObjectDescriptor = new JsonDocumentObjectDescriptor();
+        private static readonly JsonElementObjectDescriptor JsonElementObjectDescriptor = new JsonElementObjectDescriptor();
+
         /// <summary>
         /// Adds <see cref="IObjectDescriptorProvider"/>s required to support <c>System.Text.Json</c>. 
         /// </summary>
@@ -14,13 +17,11 @@ namespace HandlebarsDotNet.Extension.Json
         /// <returns></returns>
         public static HandlebarsConfiguration UseJson(this HandlebarsConfiguration configuration)
         {
-            var providers = configuration.CompileTimeConfiguration.ObjectDescriptorProviders;
+            var providers = configuration.ObjectDescriptorProviders;
             
-            providers.Add(new JsonDocumentObjectDescriptor());
-            providers.Add(new JsonElementObjectDescriptor());
+            providers.Add(JsonDocumentObjectDescriptor);
+            providers.Add(JsonElementObjectDescriptor);
             
-            configuration.AliasProviders.Add(new CountMemberAliasProvider());
-
             return configuration;
         }
     }

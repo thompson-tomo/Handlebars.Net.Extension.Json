@@ -1,41 +1,35 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
-using HandlebarsDotNet.Compiler.Structure.Path;
 using HandlebarsDotNet.Runtime;
 
 namespace HandlebarsDotNet.Extension.Json
 {
     internal static class Utils
     {
+        private static readonly string[] ArrayProperties = { "length" };
+
         public static IEnumerable GetEnumerator(JsonElement document)
         {
             return document.ValueKind switch
             {
                 JsonValueKind.Object => EnumerateObject(),
-                JsonValueKind.Array => EnumerateArray(),
-                _ => throw new ArgumentOutOfRangeException()
+                JsonValueKind.Array => ArrayProperties,
+                _ => Throw.ArgumentOutOfRangeException<IEnumerable>()
             };
 
-            IEnumerable<KeyValuePair<object, object?>> EnumerateObject()
+            IEnumerable<string> EnumerateObject()
             {
                 foreach (var property in document.EnumerateObject())
                 {
-                    yield return new KeyValuePair<object, object?>(property.Name, ExtractProperty(property.Value));
-                }
-            }
-
-            IEnumerable<object?> EnumerateArray()
-            {
-                foreach (var property in document.EnumerateArray())
-                {
-                    yield return ExtractProperty(property);
+                    yield return property.Name;
                 }
             }
         }
 
-        private static object? ExtractProperty(JsonElement property)
+        public static object? ExtractProperty(JsonElement property)
         {
             switch (property.ValueKind)
             {
@@ -60,7 +54,7 @@ namespace HandlebarsDotNet.Extension.Json
                 
                 case JsonValueKind.Number when property.TryGetInt64(out var v):
                     return v;
-                
+
                 case JsonValueKind.Number when property.TryGetDecimal(out var v):
                     return v;
                 
@@ -78,20 +72,14 @@ namespace HandlebarsDotNet.Extension.Json
                     return null;
 
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    return Throw.ArgumentOutOfRangeException<object>();
             }
         }
-
-        public static bool TryGetValue(JsonElement document, ChainSegment memberName, out object? value)
+        
+        private static class Throw
         {
-            if (document.TryGetProperty(memberName.TrimmedValue, out var property))
-            {
-                value = ExtractProperty(property);
-                return true;
-            }
-
-            value = null;
-            return false;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public static T ArgumentOutOfRangeException<T>() => throw new ArgumentOutOfRangeException();
         }
     }
 }

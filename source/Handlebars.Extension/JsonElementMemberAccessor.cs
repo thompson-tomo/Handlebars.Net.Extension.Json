@@ -1,6 +1,6 @@
 using System.Text.Json;
-using HandlebarsDotNet.Compiler.Structure.Path;
 using HandlebarsDotNet.MemberAccessors;
+using HandlebarsDotNet.PathStructure;
 
 namespace HandlebarsDotNet.Extension.Json
 {
@@ -11,13 +11,14 @@ namespace HandlebarsDotNet.Extension.Json
         public bool TryGetValue(object instance, ChainSegment memberName, out object? value)
         {
             var element = (JsonElement) instance;
-
-            if(element.ValueKind == JsonValueKind.Object && Utils.TryGetValue(element, memberName, out value))
+            
+            if(element.ValueKind == JsonValueKind.Object && element.TryGetProperty(memberName.TrimmedValue, out var property))
             {
+                value = Utils.ExtractProperty(property);
                 return true;
             }
-
-            if (_aliasProvider.TryGetMemberByAlias(instance, typeof(JsonElement), memberName, out value))
+            
+            if (_aliasProvider.TryGetMemberByAlias(element, typeof(JsonElement), memberName, out value))
             {
                 return true;
             }

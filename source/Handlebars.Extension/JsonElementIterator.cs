@@ -3,8 +3,8 @@ using System.Runtime.CompilerServices;
 using System.Text.Json;
 using HandlebarsDotNet.Collections;
 using HandlebarsDotNet.Compiler;
-using HandlebarsDotNet.Compiler.Structure.Path;
 using HandlebarsDotNet.Iterators;
+using HandlebarsDotNet.PathStructure;
 using HandlebarsDotNet.Runtime;
 using HandlebarsDotNet.ValueProviders;
 
@@ -65,8 +65,8 @@ namespace HandlebarsDotNet.Extension.Json
             
             blockParamsValues.CreateProperty(0, out var _0);
             blockParamsValues.CreateProperty(1, out var _1);
-
-            var enumerator = new ExtendedEnumerator<JsonProperty>(target.EnumerateObject());
+            
+            var enumerator = ExtendedEnumerator<JsonProperty>.Create(target.EnumerateObject());
 
             iterator.First = BoxedValues.True;
             iterator.Last = BoxedValues.False;
@@ -160,6 +160,7 @@ namespace HandlebarsDotNet.Extension.Json
         
         private static class Throw
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static void ArgumentOutOfRangeException() => throw new ArgumentOutOfRangeException();
         }
     }

@@ -1,6 +1,6 @@
 using System.Text.Json;
-using HandlebarsDotNet.Compiler.Structure.Path;
 using HandlebarsDotNet.MemberAccessors;
+using HandlebarsDotNet.PathStructure;
 
 namespace HandlebarsDotNet.Extension.Json
 {

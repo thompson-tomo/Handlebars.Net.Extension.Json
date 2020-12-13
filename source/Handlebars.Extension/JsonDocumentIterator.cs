@@ -1,7 +1,7 @@
 using System.Text.Json;
 using HandlebarsDotNet.Compiler;
-using HandlebarsDotNet.Compiler.Structure.Path;
 using HandlebarsDotNet.Iterators;
+using HandlebarsDotNet.PathStructure;
 
 namespace HandlebarsDotNet.Extension.Json
 {
