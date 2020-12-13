@@ -31,7 +31,7 @@ namespace HandlebarsDotNet.Extension.Test
         [InlineData("2247483647")]
         [InlineData("79228162514264337593543950336")]
         [InlineData("340282346638528859811704183484516925440")]
-        [InlineData("\"2020-12-13T19:23:33.9408700+02:00\"")]
+        [InlineData("\"2020-12-13T19:23:33.9408700\"")]
         [InlineData("\"8C82D441-EE53-47C6-9400-3B5045A4DF71\"")]
         public void ValueTypes(string value)
         {

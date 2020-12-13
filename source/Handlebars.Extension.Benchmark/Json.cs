@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using BenchmarkDotNet.Attributes;
@@ -29,7 +28,7 @@ namespace HandlebarsNet.Extension.Benchmark
                     {{/each}}    
                 {{/each}}";
 
-            _json = JsonSerializer.Serialize(new { level1 = ObjectLevel1Generator()});
+            _json = JsonSerializer.Serialize(new { level1 = new Utils(N).ObjectLevel1Generator()});
 
             {
                 var handlebars = Handlebars.Create();
@@ -37,50 +36,6 @@ namespace HandlebarsNet.Extension.Benchmark
 
                 using var reader = new StringReader(template);
                 _systemJson = handlebars.Compile(reader);
-            }
-
-            List<object> ObjectLevel1Generator()
-            {
-                var level = new List<object>();
-                for (int i = 0; i < N; i++)
-                {
-                    level.Add(new
-                    {
-                        id = $"{i}",
-                        level2 = ObjectLevel2Generator(i)
-                    });
-                }
-
-                return level;
-            }
-            
-            List<object> ObjectLevel2Generator(int id1)
-            {
-                var level = new List<object>();
-                for (int i = 0; i < N; i++)
-                {
-                    level.Add(new
-                    {
-                        id = $"{id1}-{i}",
-                        level3 = ObjectLevel3Generator(id1, i)
-                    });
-                }
-
-                return level;
-            }
-            
-            List<object> ObjectLevel3Generator(int id1, int id2)
-            {
-                var level = new List<object>();
-                for (int i = 0; i < N; i++)
-                {
-                    level.Add(new
-                    {
-                        id = $"{id1}-{id2}-{i}"
-                    });
-                }
-
-                return level;
             }
         }
         
