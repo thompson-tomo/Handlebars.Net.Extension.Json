@@ -1,4 +1,4 @@
-# Handlebars.Extension.Json
+# Handlebars.Net.Extension.Json
 
 
 #### [![CI](https://github.com/Handlebars-Net/Handlebars.Net.Extension.Json/workflows/CI/badge.svg)](https://github.com/Handlebars-Net/Handlebars.Net.Extension.Json/actions?query=workflow%3ACI) [![Nuget](https://img.shields.io/nuget/vpre/Handlebars.Net.Extension.Json)](https://www.nuget.org/packages/Handlebars.Net.Extension.Json/) [![performance](https://img.shields.io/badge/benchmark-statistics-blue)](http://handlebars-net.github.io/Handlebars.Net.Extension.Json/dev/bench/)
