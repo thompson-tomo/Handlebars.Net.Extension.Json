@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1607897851975,
+  "lastUpdate": 1607899503589,
   "repoUrl": "https://github.com/Handlebars-Net/Handlebars.Net.Extension.Json",
   "entries": {
     "Benchmark.Net.Extension Benchmark": [
@@ -144,6 +144,54 @@ window.BENCHMARK_DATA = {
             "value": 348405.12472098216,
             "unit": "ns",
             "range": "± 293.34031143488977"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "zjklee@gmail.com",
+            "name": "Oleh Formaniuk",
+            "username": "zjklee"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "92cc022d3b14a307cf2c563cd68baefe75330e5c",
+          "message": "Update README.md",
+          "timestamp": "2020-12-14T00:42:46+02:00",
+          "tree_id": "26d58688d9a43bc699504916c8f7f9ac68b154b7",
+          "url": "https://github.com/Handlebars-Net/Handlebars.Net.Extension.Json/commit/92cc022d3b14a307cf2c563cd68baefe75330e5c"
+        },
+        "date": 1607899502990,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "HandlebarsNet.Extension.Benchmark.Json.SystemTextJson(N: 2)",
+            "value": 22183.57247488839,
+            "unit": "ns",
+            "range": "± 15.338408210224499"
+          },
+          {
+            "name": "HandlebarsNet.Extension.Benchmark.Json.SystemTextJson(N: 5)",
+            "value": 165370.07436523438,
+            "unit": "ns",
+            "range": "± 115.188881595272"
+          },
+          {
+            "name": "HandlebarsNet.Extension.Benchmark.Json.SystemTextJson(N: 10)",
+            "value": 1047135.513811384,
+            "unit": "ns",
+            "range": "± 6361.338304484207"
+          },
+          {
+            "name": "HandlebarsNet.Extension.Benchmark.EndToEnd.Default(N: 5, DataType: \"json\")",
+            "value": 278438.3644080529,
+            "unit": "ns",
+            "range": "± 216.6548472912903"
           }
         ]
       }
