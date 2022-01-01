@@ -157,6 +157,21 @@ namespace HandlebarsDotNet.Extension.Test
 
         [Theory]
         [ClassData(typeof(EnvGenerator))]
+        public void ArrayIndexPropertiesNested(IHandlebars handlebars)
+        {
+            var model = JsonDocument.Parse("[{}, {\"Items\": [\"Index0\", \"Index1\"]}]");
+
+            var source = "{{@root.1.Items.1}}";
+
+            var template = handlebars.Compile(source);
+
+            var output = template(model);
+
+            Assert.Equal("Index1", output);
+        }
+
+        [Theory]
+        [ClassData(typeof(EnvGenerator))]
         public void ArrayCount(IHandlebars handlebars)
         {
 	        var model = JsonDocument.Parse("[{\"Key\": \"Key1\", \"Value\": \"Val1\"},{\"Key\": \"Key2\", \"Value\": \"Val2\"}]");
