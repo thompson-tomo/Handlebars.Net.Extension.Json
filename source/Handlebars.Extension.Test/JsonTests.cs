@@ -139,7 +139,37 @@ namespace HandlebarsDotNet.Extension.Test
 
             Assert.Equal("0-True-False-Key1-Val1;1-False-True-Key2-Val2;", output);
         }
-        
+
+        [Theory]
+        [ClassData(typeof(EnvGenerator))]
+        public void ArrayIndexProperties(IHandlebars handlebars)
+        {
+            var model = JsonDocument.Parse("[\"Index0\", \"Index1\"]");
+
+            var source = "{{@root.1}}";
+
+            var template = handlebars.Compile(source);
+
+            var output = template(model);
+
+            Assert.Equal("Index1", output);
+        }
+
+        [Theory]
+        [ClassData(typeof(EnvGenerator))]
+        public void ArrayIndexPropertiesNested(IHandlebars handlebars)
+        {
+            var model = JsonDocument.Parse("[{}, {\"Items\": [\"Index0\", \"Index1\"]}]");
+
+            var source = "{{@root.1.Items.1}}";
+
+            var template = handlebars.Compile(source);
+
+            var output = template(model);
+
+            Assert.Equal("Index1", output);
+        }
+
         [Theory]
         [ClassData(typeof(EnvGenerator))]
         public void ArrayCount(IHandlebars handlebars)

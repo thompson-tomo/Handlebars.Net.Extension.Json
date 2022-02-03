@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Text.Json;
 using HandlebarsDotNet.MemberAccessors;
 using HandlebarsDotNet.PathStructure;
@@ -17,7 +18,21 @@ namespace HandlebarsDotNet.Extension.Json
                 value = Utils.ExtractProperty(property);
                 return true;
             }
-            
+
+            if (element.ValueKind == JsonValueKind.Array && int.TryParse(memberName, out var index))
+            {
+                var indexedElement = element.EnumerateArray().Skip(index).FirstOrDefault();
+
+                if (indexedElement.ValueKind == JsonValueKind.Undefined)
+                {
+                    value = null;
+                    return false;
+                }
+
+                value = Utils.ExtractProperty(indexedElement);
+                return true;
+            }
+
             if (_aliasProvider.TryGetMemberByAlias(element, typeof(JsonElement), memberName, out value))
             {
                 return true;
