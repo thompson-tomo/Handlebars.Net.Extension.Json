@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1607968786948,
+  "lastUpdate": 1643868971750,
   "repoUrl": "https://github.com/Handlebars-Net/Handlebars.Net.Extension.Json",
   "entries": {
     "Benchmark.Net.Extension Benchmark": [
@@ -240,6 +240,54 @@ window.BENCHMARK_DATA = {
             "value": 350412.00859375,
             "unit": "ns",
             "range": "± 612.9204089988667"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "zjklee@gmail.com",
+            "name": "Oleh Formaniuk",
+            "username": "zjklee"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1ab7652dc458e17cea602bf8a4edb26c0c8d4e97",
+          "message": "Merge pull request #3 from jamesfera/main\n\nAdd missing array indexing functionality",
+          "timestamp": "2022-02-02T22:14:08-08:00",
+          "tree_id": "daac9cf38a9953dbe11b1f0192c08636d2c42cbd",
+          "url": "https://github.com/Handlebars-Net/Handlebars.Net.Extension.Json/commit/1ab7652dc458e17cea602bf8a4edb26c0c8d4e97"
+        },
+        "date": 1643868970771,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "HandlebarsNet.Extension.Benchmark.Json.SystemTextJson(N: 2)",
+            "value": 21871.002939860027,
+            "unit": "ns",
+            "range": "± 23.657522250838714"
+          },
+          {
+            "name": "HandlebarsNet.Extension.Benchmark.Json.SystemTextJson(N: 5)",
+            "value": 165755.30181415266,
+            "unit": "ns",
+            "range": "± 220.31686874091832"
+          },
+          {
+            "name": "HandlebarsNet.Extension.Benchmark.Json.SystemTextJson(N: 10)",
+            "value": 1035031.7222377232,
+            "unit": "ns",
+            "range": "± 2213.936621911194"
+          },
+          {
+            "name": "HandlebarsNet.Extension.Benchmark.EndToEnd.Default(N: 5, DataType: \"json\")",
+            "value": 294088.19025530136,
+            "unit": "ns",
+            "range": "± 740.0520465016269"
           }
         ]
       }
