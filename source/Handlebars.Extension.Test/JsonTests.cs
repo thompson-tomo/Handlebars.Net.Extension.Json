@@ -20,9 +20,7 @@ namespace HandlebarsDotNet.Extension.Test
             private readonly List<(IHandlebars, JsonModelFactory)> _data = new List<(IHandlebars, JsonModelFactory)>
             {
                 (Handlebars.Create(new HandlebarsConfiguration().UseJson()), json => JsonDocument.Parse(json)),
-#if NET6_0_OR_GREATER
                 (Handlebars.Create(new HandlebarsConfiguration().UseJson()), json => System.Text.Json.Nodes.JsonNode.Parse(json)),
-#endif
             };
 
             public IEnumerator<object[]> GetEnumerator() => _data.Select(item => new object[] { item.Item1, item.Item2 }).GetEnumerator();

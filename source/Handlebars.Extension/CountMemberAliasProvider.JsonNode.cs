@@ -1,5 +1,3 @@
-#if NET6_0_OR_GREATER
-
 using System;
 using System.Text.Json.Nodes;
 using HandlebarsDotNet.PathStructure;
@@ -15,7 +13,6 @@ namespace HandlebarsDotNet.Extension.Json
                 value = null;
                 return false;
             }
-            
             if (!(instance is JsonArray jsonArray))
             {
                 value = null;
@@ -27,5 +24,3 @@ namespace HandlebarsDotNet.Extension.Json
         }
     }
 }
-
-#endif

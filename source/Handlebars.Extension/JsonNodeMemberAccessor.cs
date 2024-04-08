@@ -1,5 +1,3 @@
-#if NET6_0_OR_GREATER
-
 using System.Text.Json.Nodes;
 using HandlebarsDotNet.MemberAccessors;
 using HandlebarsDotNet.PathStructure;
@@ -43,5 +41,3 @@ namespace HandlebarsDotNet.Extension.Json
         }
     }
 }
-
-#endif
